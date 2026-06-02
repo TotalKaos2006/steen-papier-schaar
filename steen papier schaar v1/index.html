@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Steen Papier Schaar</title>
+</head>
+<body>
+
+    <p>Computer: <span id="computer"></span></p>
+    <p>jouw keuze: <span id="human"></span></p>
+    <p>jouw score: <span id="result"></span></p>
+        <button id="steen">Steen</button>
+        <button id="papier">Papier</button>
+        <button id="schaar">Schaar</button>
+
+    <script>
+       const computerOutput = document.querySelector("#computer");
+       const humanOutput = document.querySelector("#human");
+       const resultOutput = document.querySelector("#result");
+
+        let humanChoice = "";
+        let computerChoice = "";
+
+        // button clcick event
+        const steenBtn = document.querySelector("#steen");
+        steenBtn.addEventListener("click", function(event) {
+            console.log("klik event triggerd: ", event);
+            alert("klik event triggered");
+             humanChoice = "steen";
+        humanOutput.innerHTML = humanChoice;
+        let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+console.log(randomNumber);
+if (randomNumber === 1) {
+    computerChoice = "steen";
+} else if (randomNumber === 2) {
+    computerChoice = "papier";
+} else {
+    computerChoice = "schaar";
+}
+
+computerOutput.innerHTML = computerChoice;
+        });
+
+        const papierBtn = document.querySelector("#papier");
+        papierBtn.addEventListener("click", function(event) {
+            console.log("klik event triggerd: ", event);
+            alert("klik event triggered");
+             humanChoice = "papier";
+        humanOutput.innerHTML = humanChoice;
+        let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+console.log(randomNumber);
+if (randomNumber === 1) {
+    computerChoice = "steen";
+} else if (randomNumber === 2) {
+    computerChoice = "papier";
+} else {
+    computerChoice = "schaar";
+}
+
+computerOutput.innerHTML = computerChoice;
+        });
+
+        const schaarBtn = document.querySelector("#schaar");
+        schaarBtn.addEventListener("click", function(event) {
+            console.log("klik event triggerd: ", event);
+            alert("klik event triggered");
+             humanChoice = "schaar";
+        humanOutput.innerHTML = humanChoice;
+        let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+console.log(randomNumber);
+if (randomNumber === 1) {
+    computerChoice = "steen";
+} else if (randomNumber === 2) {
+    computerChoice = "papier";
+} else {
+    computerChoice = "schaar";
+}
+
+computerOutput.innerHTML = computerChoice;
+        });
+
+    </script>
+</body>
+</html>
