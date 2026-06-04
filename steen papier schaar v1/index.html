@@ -9,9 +9,10 @@
     <p>Computer: <span id="computer"></span></p>
     <p>jouw keuze: <span id="human"></span></p>
     <p>jouw score: <span id="result"></span></p>
-        <button id="steen">Steen</button>
-        <button id="papier">Papier</button>
-        <button id="schaar">Schaar</button>
+    <p>Score: <span id="winst">0</span> gewonnen / <span id="verlies">0</span> verloren / <span id="gelijk">0</span> gelijk</p>
+        <button id="steen" data-keuze="steen">Steen</button>
+        <button id="papier" data-keuze="papier">Papier</button>
+        <button id="schaar" data-keuze="schaar">Schaar</button>
 
     <script>
        const computerOutput = document.querySelector("#computer");
@@ -20,67 +21,77 @@
 
         let humanChoice = "";
         let computerChoice = "";
+        let scoreWinst = 0;
+        let scoreVerlies = 0;
+        let scoreGelijk = 0;
 
-        // button clcick event
-        const steenBtn = document.querySelector("#steen");
-        steenBtn.addEventListener("click", function(event) {
-            console.log("klik event triggerd: ", event);
-            alert("klik event triggered");
-             humanChoice = "steen";
+const knoppen = document.querySelectorAll("button");
+knoppen.forEach(function(knop) {
+    knop.addEventListener("click", function(event) {
+        humanChoice = event.target.dataset.keuze;
         humanOutput.innerHTML = humanChoice;
-        let randomNumber = Math.floor(Math.random() * 3) + 1;
+        computerChoice = computerKeuze();
+        computerOutput.innerHTML = computerChoice;
+        const uitkomst = bepaalUitkomst(humanChoice, computerChoice);
+        resultOutput.innerHTML = uitkomst;
+        
+        switch (uitkomst) {
+            case "gewonnen":
+                scoreWinst = scoreWinst + 1;
+                break;
+            case "verloren":
+                scoreVerlies = scoreVerlies + 1;
+                break;
+            case "gelijk":
+                scoreGelijk = scoreGelijk + 1;
+                break;
+        }
 
-console.log(randomNumber);
-if (randomNumber === 1) {
-    computerChoice = "steen";
-} else if (randomNumber === 2) {
-    computerChoice = "papier";
-} else {
-    computerChoice = "schaar";
+        document.querySelector("#winst").innerHTML = scoreWinst;
+        document.querySelector("#verlies").innerHTML = scoreVerlies;
+        document.querySelector("#gelijk").innerHTML = scoreGelijk;
+    });
+});
+
+function computerKeuze() {
+    let randomNumber = Math.floor(Math.random() * 3) + 1;
+
+        switch (randomNumber) {
+    case 1:
+        return "steen";
+    case 2:
+        return "papier";
+    default:
+        return "schaar";
+    }
 }
 
-computerOutput.innerHTML = computerChoice;
-        });
+function bepaalUitkomst(speler, computer) {
+    if (speler === computer) {
+        return "gelijk";
+    }
 
-        const papierBtn = document.querySelector("#papier");
-        papierBtn.addEventListener("click", function(event) {
-            console.log("klik event triggerd: ", event);
-            alert("klik event triggered");
-             humanChoice = "papier";
-        humanOutput.innerHTML = humanChoice;
-        let randomNumber = Math.floor(Math.random() * 3) + 1;
 
-console.log(randomNumber);
-if (randomNumber === 1) {
-    computerChoice = "steen";
-} else if (randomNumber === 2) {
-    computerChoice = "papier";
-} else {
-    computerChoice = "schaar";
-}
-
-computerOutput.innerHTML = computerChoice;
-        });
-
-        const schaarBtn = document.querySelector("#schaar");
-        schaarBtn.addEventListener("click", function(event) {
-            console.log("klik event triggerd: ", event);
-            alert("klik event triggered");
-             humanChoice = "schaar";
-        humanOutput.innerHTML = humanChoice;
-        let randomNumber = Math.floor(Math.random() * 3) + 1;
-
-console.log(randomNumber);
-if (randomNumber === 1) {
-    computerChoice = "steen";
-} else if (randomNumber === 2) {
-    computerChoice = "papier";
-} else {
-    computerChoice = "schaar";
-}
-
-computerOutput.innerHTML = computerChoice;
-        });
+    switch (speler) {
+        case "steen":
+            if (computer === "schaar") {
+                return "gewonnen";
+            } else {
+                return "verloren";
+            }
+        case "papier":
+            if (computer === "steen") {
+                return "gewonnen";
+            } else {
+                return "verloren";
+            }
+        case "schaar":
+            if (computer === "papier") {
+                return "gewonnen";
+            } else {
+                return "verloren";
+            }
+    }}
 
     </script>
 </body>
