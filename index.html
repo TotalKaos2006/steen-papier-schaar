@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Steen Papier Schaar</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="container">
     <p>Computer: <span id="computer"></span></p>
     <p>Jouw keuze: <span id="human"></span></p>
     <p>Uitslag: <span id="result"></span></p>
@@ -18,6 +20,7 @@
     <button id="steen" data-keuze="steen">Steen</button>
     <button id="papier" data-keuze="papier">Papier</button>
     <button id="schaar" data-keuze="schaar">Schaar</button>
+</div>
 
     <script>
         const computerOutput = document.querySelector("#computer");
